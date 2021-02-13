@@ -21,15 +21,24 @@ all:
 	make build
 	make install
 
+release: 
+	make doc
+	make build-vignettes
+	make install
+	
+
 .PHONY: doc
 doc:
 	Rscript -e 'devtools::document("${PKGDIR}")'
 
-build:
+build: 
+	R CMD build --md5 $(PKGDIR) --no-build-vignettes
+  
+build-vignettes:
 	R CMD build --md5 $(PKGDIR)
 
 install:
-	R CMD INSTALL --install-tests ${TARBALL}
+	R CMD INSTALL --install-tests ${TARBALL} 
 
 install-build:
 	R CMD INSTALL --build --install-tests ${TARBALL}

@@ -31,6 +31,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
 ```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
 library(mrgsim.sa)
 ```
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select sensitivity runs from a sens_each object — select_sens • mrgsim.sa</title>
+<title>Articles • mrgsim.sa</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,7 @@
 
 
 
-<meta property="og:title" content="Select sensitivity runs from a sens_each object — select_sens" />
-<meta property="og:description" content="Select sensitivity runs from a sens_each object" />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -59,7 +58,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -123,55 +122,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select sensitivity runs from a sens_each object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/sens_each.R'><code>R/sens_each.R</code></a></small>
-    <div class="hidden name"><code>select_sens.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Select sensitivity runs from a sens_each object</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="get-started.html">Get Started</a></dt>
+        <dd></dt>
+      </dl>
     </div>
-
-    <pre class="usage"><span class='fu'>select_sens</span><span class='op'>(</span><span class='va'>x</span>, dv_name <span class='op'>=</span> <span class='cn'>NULL</span>, p_name <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a sens_each object</p></td>
-    </tr>
-    <tr>
-      <th>dv_name</th>
-      <td><p>character names of dependent variables to select</p></td>
-    </tr>
-    <tr>
-      <th>p_name</th>
-      <td><p>character names of parameters to select</p></td>
-    </tr>
-    </table>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/house.html'>house</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>out1</span> <span class='op'>&lt;-</span> <span class='va'>mod</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='parseq_fct.html'>parseq_factor</a></span><span class='op'>(</span><span class='va'>CL</span>,<span class='va'>VC</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='sens_fun.html'>sens_each</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>out2</span> <span class='op'>&lt;-</span> <span class='fu'>select_sens</span><span class='op'>(</span><span class='va'>out1</span>, dv_name <span class='op'>=</span> <span class='st'>"CP"</span>, p_name <span class='op'>=</span> <span class='st'>"CV"</span><span class='op'>)</span>
-
-</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
   </div>
 </div>
 

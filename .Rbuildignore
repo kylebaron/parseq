@@ -11,5 +11,4 @@ Makefile
 ^mrgsim\.sa\.Rcheck$
 ^\.gitignore$
 inst/covr
-vignettes
 NEWS\.md

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot sensitivity analysis results — sens_plot • parseq</title>
+<title>Plot sensitivity analysis results — sens_plot • mrgsim.sa</title>
 
 
 <!-- jquery -->
@@ -71,8 +71,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">parseq</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="../index.html">mrgsim.sa</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -80,16 +80,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/get-started.html">Get Started</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/kylebaron/mrgsim.sa/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -104,7 +124,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot sensitivity analysis results</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/sens_plot.R'><code>R/sens_plot.R</code></a></small>
     <div class="hidden name"><code>sens_plot.Rd</code></div>
     </div>
 
@@ -112,33 +132,42 @@
     <p>Plot sensitivity analysis results</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sens_plot</span>(<span class='no'>data</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>sens_plot</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for sens_each</span>
-<span class='fu'>sens_plot</span>(
-  <span class='no'>data</span>,
-  <span class='no'>dv_name</span>,
-  <span class='kw'>logy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>plot_ref</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='no'>dv_name</span>[<span class='fl'>1</span>],
-  <span class='kw'>cowplot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)
+<span class='fu'>sens_plot</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>dv_name</span>,
+  logy <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lwd <span class='op'>=</span> <span class='fl'>0.8</span>,
+  digits <span class='op'>=</span> <span class='fl'>3</span>,
+  plot_ref <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  xlab <span class='op'>=</span> <span class='st'>"time"</span>,
+  ylab <span class='op'>=</span> <span class='va'>dv_name</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+  grid <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
 <span class='co'># S3 method for sens_grid</span>
-<span class='fu'>sens_plot</span>(<span class='no'>data</span>, <span class='no'>col</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>sens_plot</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>dv_name</span>,
+  digits <span class='op'>=</span> <span class='fl'>2</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lwd <span class='op'>=</span> <span class='fl'>0.8</span>,
+  logy <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  plot_ref <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>output from [sens_each()] or 
-[sens_grid()]</p></td>
+      <td><p>output from <code><a href='sens_fun.html'>sens_each()</a></code> or
+<code><a href='sens_fun.html'>sens_grid()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -150,16 +179,15 @@
     </tr>
     <tr>
       <th>logy</th>
-      <td><p>if `TRUE`, y-axis is transformed to log scale</p></td>
+      <td><p>if <code>TRUE</code>, y-axis is transformed to log scale</p></td>
     </tr>
     <tr>
       <th>ncol</th>
-      <td><p>passed to [ggplot2::facet_wrap()]</p></td>
+      <td><p>passed to <code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>ggplot2::facet_wrap()</a></code></p></td>
     </tr>
     <tr>
-      <th>bw</th>
-      <td><p>if `TRUE` a simple black and white plot will be generated
-when the [sens_each()] method is used</p></td>
+      <th>lwd</th>
+      <td><p>passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code></p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -167,7 +195,7 @@ when the [sens_each()] method is used</p></td>
     </tr>
     <tr>
       <th>plot_ref</th>
-      <td><p>if `TRUE`, then the reference case will be plotted in a black
+      <td><p>if <code>TRUE</code>, then the reference case will be plotted in a black
 dashed line</p></td>
     </tr>
     <tr>
@@ -179,17 +207,20 @@ dashed line</p></td>
       <td><p>y-axis title</p></td>
     </tr>
     <tr>
-      <th>cowplot</th>
-      <td><p>if `TRUE`, plots from the `sens_each` method
-will be passed through [cowplot::plot_grid()]</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>outputs to plot</p></td>
+      <th>grid</th>
+      <td><p>if <code>TRUE</code>, plots from the <code>sens_each</code> method
+will be passed through <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots()</a></code></p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/house.html'>house</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>dose</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/ev.html'>ev</a></span><span class='op'>(</span>amt <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sens_run.html'>sens_run</a></span><span class='op'>(</span><span class='va'>mod</span>, sargs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>events <span class='op'>=</span> <span class='va'>dose</span><span class='op'>)</span>,  par <span class='op'>=</span> <span class='st'>"CL,VC"</span><span class='op'>)</span> 
+<span class='fu'>sens_plot</span><span class='op'>(</span><span class='va'>out</span>, dv_name <span class='op'>=</span> <span class='st'>"CP"</span><span class='op'>)</span>
+</div><div class='img'><img src='sens_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -201,11 +232,11 @@ will be passed through [cowplot::plot_grid()]</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kyle T Baron.</p>
+  <p>Developed by Kyle Baron.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

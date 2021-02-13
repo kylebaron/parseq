@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulation helper to generate a sequence of parameters from a range — parseq_range • mrgsim.sa</title>
+<title>Run ad-hoc parameter sensitivity analyses with mrgsolve — sens_run • mrgsim.sa</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Simulation helper to generate a sequence of parameters from a range — parseq_range" />
-<meta property="og:description" content="Simulation helper to generate a sequence of parameters from a range" />
+<meta property="og:title" content="Run ad-hoc parameter sensitivity analyses with mrgsolve — sens_run" />
+<meta property="og:description" content="Run ad-hoc parameter sensitivity analyses with mrgsolve" />
 
 
 
@@ -123,75 +123,92 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulation helper to generate a sequence of parameters from a range</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/parseq.R'><code>R/parseq.R</code></a></small>
-    <div class="hidden name"><code>parseq_range.Rd</code></div>
+    <h1>Run ad-hoc parameter sensitivity analyses with mrgsolve</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/sens_run.R'><code>R/sens_run.R</code></a></small>
+    <div class="hidden name"><code>sens_run.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Simulation helper to generate a sequence of parameters from a range</p>
+    <p>Run ad-hoc parameter sensitivity analyses with mrgsolve</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parseq_range</span><span class='op'>(</span><span class='va'>mod</span>, <span class='va'>...</span>, .n <span class='op'>=</span> <span class='fl'>5</span>, .geo <span class='op'>=</span> <span class='cn'>TRUE</span>, .digits <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sens_run</span><span class='op'>(</span>
+  <span class='va'>mod</span>,
+  par <span class='op'>=</span> <span class='cn'>NULL</span>,
+  var <span class='op'>=</span> <span class='cn'>NULL</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"factor"</span>, <span class='st'>"cv"</span>, <span class='st'>"range"</span>, <span class='st'>"manual"</span><span class='op'>)</span>,
+  vary <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"each"</span>, <span class='st'>"grid"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  sargs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mod</th>
-      <td><p>mrgsolve model object</p></td>
+      <td><p>a mrgsolve model object</p></td>
+    </tr>
+    <tr>
+      <th>par</th>
+      <td><p>parameter names for sensitivity analysis; this can be
+a character vector or a comma-separated string (see examples)</p></td>
+    </tr>
+    <tr>
+      <th>var</th>
+      <td><p>names of model output variables to include in simulated output;
+this could be the name of a compartment or another output derived inside
+of the model (e.g. <code>DV</code> or <code>CP</code> or <code>logV</code>, but is specific to what is coded
+into <code>mod</code>)</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>parameter sequence generation method</p></td>
+    </tr>
+    <tr>
+      <th>vary</th>
+      <td><p>use <code>each</code> to vary one parameter at a time or <code>grid</code>
+to vary all combinations of parameters</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>unquoted parameter names,</p></td>
+      <td><p>passed to <code>method</code> function</p></td>
     </tr>
     <tr>
-      <th>.n</th>
-      <td><p>number of values to simulate for each parameter sequence</p></td>
-    </tr>
-    <tr>
-      <th>.geo</th>
-      <td><p>if <code>TRUE</code> generate a geometric sequence; otherwise,
-generate a sequence evenly spaced on Cartesian scale; see <code><a href='seq_geo.html'>seq_geo()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>.digits</th>
-      <td><p>if <code>numeric</code>, the number of significant digits in the
-parameter sensitivity values are set using <code><a href='https://rdrr.io/r/base/Round.html'>signif()</a></code></p></td>
+      <th>sargs</th>
+      <td><p>a named list of arguments passed to <code><a href='sens_fun.html'>sens_each()</a></code> or
+<code><a href='sens_fun.html'>sens_grid()</a></code> and eventually
+to <code><a href='https://rdrr.io/pkg/mrgsolve/man/mrgsim.html'>mrgsolve::mrgsim()</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-<ul>
-<li><p><code>.n</code>  is passed to <code><a href='seq_geo.html'>seq_geo()</a></code> as <code>n</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='parseq_cv.html'>parseq_cv()</a></code>, <code><a href='parseq_fct.html'>parseq_fct()</a></code>, <code><a href='parseq_manual.html'>parseq_manual()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/house.html'>house</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='va'>mod</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>parseq_range</span><span class='op'>(</span>CL <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>,<span class='fl'>1</span><span class='op'>)</span>,VC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>,<span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='sens_fun.html'>sens_each</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24,050 x 7</span><span>
+<span class='va'>dose</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/ev.html'>ev</a></span><span class='op'>(</span>amt <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+
+<span class='fu'>sens_run</span><span class='op'>(</span>
+  <span class='va'>mod</span>, 
+  par <span class='op'>=</span> <span class='st'>"CL,VC"</span>, 
+  method <span class='op'>=</span> <span class='st'>"cv"</span>, 
+  vary <span class='op'>=</span> <span class='st'>"each"</span>, 
+  sargs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>events <span class='op'>=</span> <span class='va'>dose</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24,200 x 7</span><span>
 #&gt;     case  time p_name p_value dv_name dv_value ref_value
 #&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1  0    CL         0.5 GUT            0         0
-#&gt; </span><span style='color: #555555;'> 2</span><span>     1  0    CL         0.5 CENT           0         0
-#&gt; </span><span style='color: #555555;'> 3</span><span>     1  0    CL         0.5 RESP          50        50
-#&gt; </span><span style='color: #555555;'> 4</span><span>     1  0    CL         0.5 DV             0         0
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1  0    CL         0.5 CP             0         0
-#&gt; </span><span style='color: #555555;'> 6</span><span>     1  0.25 CL         0.5 GUT            0         0
-#&gt; </span><span style='color: #555555;'> 7</span><span>     1  0.25 CL         0.5 CENT           0         0
-#&gt; </span><span style='color: #555555;'> 8</span><span>     1  0.25 CL         0.5 RESP          50        50
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1  0.25 CL         0.5 DV             0         0
-#&gt; </span><span style='color: #555555;'>10</span><span>     1  0.25 CL         0.5 CP             0         0
-#&gt; </span><span style='color: #555555;'># … with 24,040 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'> 1</span><span>     1     0 CL       0.549 GUT            0         0
+#&gt; </span><span style='color: #555555;'> 2</span><span>     1     0 CL       0.549 GUT            0       100
+#&gt; </span><span style='color: #555555;'> 3</span><span>     1     0 CL       0.549 CENT           0         0
+#&gt; </span><span style='color: #555555;'> 4</span><span>     1     0 CL       0.549 CENT           0         0
+#&gt; </span><span style='color: #555555;'> 5</span><span>     1     0 CL       0.549 RESP          50        50
+#&gt; </span><span style='color: #555555;'> 6</span><span>     1     0 CL       0.549 RESP          50        50
+#&gt; </span><span style='color: #555555;'> 7</span><span>     1     0 CL       0.549 DV             0         0
+#&gt; </span><span style='color: #555555;'> 8</span><span>     1     0 CL       0.549 DV             0         0
+#&gt; </span><span style='color: #555555;'> 9</span><span>     1     0 CL       0.549 CP             0         0
+#&gt; </span><span style='color: #555555;'>10</span><span>     1     0 CL       0.549 CP             0         0
+#&gt; </span><span style='color: #555555;'># … with 24,190 more rows</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

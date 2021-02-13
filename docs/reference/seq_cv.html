@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulation helper to generate a sequence of parameters from a range — parseq_range • mrgsim.sa</title>
+<title>Generate a sequence based on coefficient of variation — seq_cv • mrgsim.sa</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Simulation helper to generate a sequence of parameters from a range — parseq_range" />
-<meta property="og:description" content="Simulation helper to generate a sequence of parameters from a range" />
+<meta property="og:title" content="Generate a sequence based on coefficient of variation — seq_cv" />
+<meta property="og:description" content="Generate a sequence based on coefficient of variation" />
 
 
 
@@ -123,76 +123,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulation helper to generate a sequence of parameters from a range</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/parseq.R'><code>R/parseq.R</code></a></small>
-    <div class="hidden name"><code>parseq_range.Rd</code></div>
+    <h1>Generate a sequence based on coefficient of variation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kylebaron/mrgsim.sa/blob/master/R/seq.R'><code>R/seq.R</code></a></small>
+    <div class="hidden name"><code>seq_cv.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Simulation helper to generate a sequence of parameters from a range</p>
+    <p>Generate a sequence based on coefficient of variation</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parseq_range</span><span class='op'>(</span><span class='va'>mod</span>, <span class='va'>...</span>, .n <span class='op'>=</span> <span class='fl'>5</span>, .geo <span class='op'>=</span> <span class='cn'>TRUE</span>, .digits <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>seq_cv</span><span class='op'>(</span><span class='va'>point</span>, cv <span class='op'>=</span> <span class='fl'>30</span>, n <span class='op'>=</span> <span class='fl'>5</span>, nsd <span class='op'>=</span> <span class='fl'>2</span>, digits <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mod</th>
-      <td><p>mrgsolve model object</p></td>
+      <th>point</th>
+      <td><p>reference parameter value</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>unquoted parameter names,</p></td>
+      <th>cv</th>
+      <td><p>coefficient of variation</p></td>
     </tr>
     <tr>
-      <th>.n</th>
-      <td><p>number of values to simulate for each parameter sequence</p></td>
+      <th>n</th>
+      <td><p>number of values to simulate in the sequence</p></td>
     </tr>
     <tr>
-      <th>.geo</th>
-      <td><p>if <code>TRUE</code> generate a geometric sequence; otherwise,
-generate a sequence evenly spaced on Cartesian scale; see <code><a href='seq_geo.html'>seq_geo()</a></code></p></td>
+      <th>nsd</th>
+      <td><p>number of standard deviations defining the
+range of simulated parameter values</p></td>
     </tr>
     <tr>
-      <th>.digits</th>
-      <td><p>if <code>numeric</code>, the number of significant digits in the
-parameter sensitivity values are set using <code><a href='https://rdrr.io/r/base/Round.html'>signif()</a></code></p></td>
+      <th>digits</th>
+      <td><p>number of significant digits in the answer; if <code>NULL</code> (the
+default) all digits are retained</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-<ul>
-<li><p><code>.n</code>  is passed to <code><a href='seq_geo.html'>seq_geo()</a></code> as <code>n</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='parseq_cv.html'>parseq_cv()</a></code>, <code><a href='parseq_fct.html'>parseq_fct()</a></code>, <code><a href='parseq_manual.html'>parseq_manual()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'>mrgsolve</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/mrgsolve/man/house.html'>house</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>mod</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>parseq_range</span><span class='op'>(</span>CL <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>,<span class='fl'>1</span><span class='op'>)</span>,VC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>,<span class='fl'>40</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='sens_fun.html'>sens_each</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24,050 x 7</span><span>
-#&gt;     case  time p_name p_value dv_name dv_value ref_value
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>     1  0    CL         0.5 GUT            0         0
-#&gt; </span><span style='color: #555555;'> 2</span><span>     1  0    CL         0.5 CENT           0         0
-#&gt; </span><span style='color: #555555;'> 3</span><span>     1  0    CL         0.5 RESP          50        50
-#&gt; </span><span style='color: #555555;'> 4</span><span>     1  0    CL         0.5 DV             0         0
-#&gt; </span><span style='color: #555555;'> 5</span><span>     1  0    CL         0.5 CP             0         0
-#&gt; </span><span style='color: #555555;'> 6</span><span>     1  0.25 CL         0.5 GUT            0         0
-#&gt; </span><span style='color: #555555;'> 7</span><span>     1  0.25 CL         0.5 CENT           0         0
-#&gt; </span><span style='color: #555555;'> 8</span><span>     1  0.25 CL         0.5 RESP          50        50
-#&gt; </span><span style='color: #555555;'> 9</span><span>     1  0.25 CL         0.5 DV             0         0
-#&gt; </span><span style='color: #555555;'>10</span><span>     1  0.25 CL         0.5 CP             0         0
-#&gt; </span><span style='color: #555555;'># … with 24,040 more rows</span><span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>seq_cv</span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1]  5.488116  7.408182 10.000000 13.498588 18.221188</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

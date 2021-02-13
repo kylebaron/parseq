@@ -43,3 +43,4 @@ Collate:
     'sens_plot.R'
     'sens_run.R'
     'seq.R'
+VignetteBuilder: knitr
